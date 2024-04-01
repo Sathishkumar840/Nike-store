@@ -1,0 +1,47 @@
+import React from 'react'
+import Clips from './Utils/Clips'
+import SocialLinks from './Utils/SocialLinks'
+
+const Hero = ({heroapi:{title,subtitle,btntext,img,sociallinks,videos}}) => {
+    
+  return (
+    <>
+    <div className='relative pt-10 pb-40 h-auto w-auto flex flex-col'>
+        <div className='bg-theme clip-path h-[85vh] lg:h-[75vh] md:h-[65vh] sm:h-[55vh] 
+        absolute top-0 left-0 right-0 opacity-100 z-10 w-auto'></div>
+        <div className='relative opacity-100  z-20 grid items-center justify-items-center nike-container'> 
+            <div>
+                <h1 className='text-6xl lg:text-5xl md:text-4xl sm:text-3xl xsm:text -2xl text-slate-200 font-extrabold filter drop-shadow-sm '>{title}</h1>
+                <h1 className='text-6xl lg:text-5xl md:text-4xl sm:text-3xl xsm:text -2xl text-slate-200 font-extrabold filter drop-shadow-sm '>{subtitle}</h1>
+                <button className='button-theme bg-slate-200 shadow-slate-200 rounded-xl my-5'>{btntext}</button>
+                <div className=' grid items-center gap-5 md:gap-3 absolute top-[33vh] lg:top-[27vh] left-[11%] xl:left-0 w-auto h-auto'>
+                  {
+                  videos.map((val,i)=>(
+                    <Clips
+                      key={i}
+                      imgsrc={val.imgsrc}
+                      clip={val.clip}
+                    />
+
+                  ))
+                }
+                </div>
+                <div className='grid items-center absolute top-[33vh] lg:top-[27vh] right-0 gap-3'>
+                  {sociallinks?.map((val,i)=>(
+                    <SocialLinks
+                    key={i}
+                    icon={val.icon}
+                    />
+                  ))}
+                </div>
+            </div>
+            <div>
+                <img src={img} className='w-auto h-[45vh] lg:h-[35vh] md:h-[31hv] sm:h-[21vh] xsm:h-[19vh] transitions-theme -rotate-[25deg] hover:rotate-0 cursor-pointer object-fill' alt="hero-img/img" />
+            </div>
+        </div>
+    </div>
+    </>
+  )
+}
+
+export default Hero
